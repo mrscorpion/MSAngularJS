@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <title>AngularJS 服务(Service)</title>
+</head>
+<body>
+<!--什么是服务？
+在 AngularJS 中，服务是一个函数或对象，可在你的 AngularJS 应用中使用。
+AngularJS 内建了30 多个服务。
+
+[有个 $location 服务，它可以返回当前页面的 URL 地址。]
+注意 $location 服务是作为一个参数传递到 controller 中。如果要使用它，需要在 controller 中定义。
+-->
+<div data-ng-app="myApp" ng-controller="myCtrl">
+    <p>当前页面的ur：</p>
+    <h3>{{myUrl}}</h3>
+</div>
+
+<p>该实例使用了内建的 $location 服务获取当前页面的 URL</p>
+
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('myCtrl', function ($scope, $location) {
+        $scope.myUrl = $location.absUrl();
+    });
+</script>
+
+<!--为什么使用服务?
+$http 是 AngularJS 应用中最常用的服务。服务向服务器发送请求，应用响应服务器传送过来的数据。
+AngularJS 会一直监控应用，处理事件变化， AngularJS 使用 $location 服务比使用 window.location 对象更好。-->
+</body>
+</html>

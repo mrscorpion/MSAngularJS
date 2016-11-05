@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <title>AngularJS Select(选择框)</title>
+</head>
+<body>
+<!--
+AngularJS 可以使用数组或对象创建一个下拉列表选项。
+使用 ng-options 创建选择框
+在 AngularJS 中我们可以使用 ng-option 指令来创建一个下拉列表，列表项通过对象和数组循环输出
+也可以使用ng-repeat 指令来创建下拉列表
+
+应该用哪个更好?
+ng-repeat 指令是通过数组来循环 HTML 代码来创建下拉列表，但 ng-options 指令更适合创建下拉列表，它有以下优势：
+使用 ng-options 的选项的一个对象， ng-repeat 是一个字符串/.
+ng-repeat 有局限性，选择的值是一个字符串
+用 ng-options 指令，选择的值是一个对象
+当选择值是一个对象时，我们就可以获取更多信息，应用也更灵活。
+-->
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <select ng-model="selectedName" ng-options="x for x in names">
+    </select>
+    <p>该实例演示了 ng-options 指令的使用。</p>
+
+    <hr>
+    <select>
+        <option ng-repeat="x in names">{{x}}</option>
+    </select>
+    <p>该实例演示了使用 ng-repeat 指令来创建下拉列表。</p>
+
+    <hr>
+    <h1>使用 ng-options 比 ng-repeat 更好</h1>
+    <p>选择网站: 使用 ng-options 的选项的一个对象， ng-repeat 是一个字符串</p>
+    <select ng-model="selectedSite">
+        <option ng-repeat="x in sites" value="{{x.url}}">{{x.site}}</option>
+    </select>
+    <p>该实例演示了使用 ng-repeat 指令来创建下拉列表，选中的值是一个字符串。</p>
+    <br>
+
+    <h1>你选择的是: {{selectedSite}}</h1>
+    <select ng-model="selectedSite" ng-options="x.site for x in sites">
+    </select>
+
+    <h1>你选择的是: {{selectedSite.site}}</h1>
+    <p>网址为: {{selectedSite.url}}</p>
+    <p>该实例演示了使用 ng-options  指令来创建下拉列表，选中的值是一个对象。</p>
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+        $scope.names = ["Google", "Apple", "Mrscorpion"];
+        $scope.sites = [
+            {site : "Google", url : "http://www.google.com"},
+            {site : "Apple", url : "http://www.apple.com"},
+            {site : "Mrscorpion", url : "http://www.mrscorpion.github.io"}
+        ];
+    });
+</script>
+
+</body>
+</html>

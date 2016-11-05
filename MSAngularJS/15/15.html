@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <title>外部文件中的控制器</title>
+</head>
+<body>
+<!--在大型的应用程序中，通常是把控制器存储在外部文件中。
+只需要把 <script> 标签中的代码复制到名为 personController.js 的外部文件中即可：-->
+<div ng-app="myApp" ng-controller="personCtrl">
+
+    名: <input type="text" ng-model="firstName"><br>
+    姓: <input type="text" ng-model="lastName"><br>
+    <br>
+    姓名: {{firstName + " " + lastName}}
+
+</div>
+<script src="personController.js"></script>
+</body>
+</html>

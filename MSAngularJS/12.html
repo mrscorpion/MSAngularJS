@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS 类</title>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style>
+        input.ng-invalid {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+<!--ng-model 指令基于它们的状态为 HTML 元素提供了 CSS 类-->
+<form ng-app="" name="myForm">
+    输入你的名字:
+    <input name="myName" ng-model="myText" required>
+</form>
+
+<p>编辑文本域，不同状态背景颜色会发送变化。</p>
+<p>文本域添加了 required 属性，该值是必须的，如果为空则是不合法的。</p>
+</body>
+</html>

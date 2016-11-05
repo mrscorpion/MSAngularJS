@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <title>$创建自定义服务</title>
+</head>
+<body>
+<!--
+你可以创建访问自定义服务，链接到你的模块中
+要使用访问自定义服务，需要在定义过滤器的时候独立添加
+使用自定义的的服务 hexafy 将一个数字转换为16进制数
+
+过滤器中，使用自定义服务
+当你创建了自定义服务，并连接到你的应用上后，你可以在控制器，指令，过滤器或其他服务中使用它。
+
+在对象数组中获取值时你可以使用过滤器
+创建服务 hexafy
+-->
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <p>255 的16进制是:</p>
+    <h1>{{hex}}</h1>
+    <p>自定义服务，用于转换16进制数：</p>
+
+    <hr>
+    在过滤器中使用服务:
+    <h1>{{255 | myFormat}}</h1>
+
+    <hr>
+    <p>在获取数组 [255, 251, 200] 值时使用过滤器:</p>
+
+    <ul>
+        <li ng-repeat="x in counts">{{x | myFormat}}</li>
+    </ul>
+
+    <p>过滤器使用服务将10进制转换为16进制。</p>
+</div>
+
+
+<script>
+    var app = angular.module('myApp', []);
+
+    app.service('hexafy', function() {
+        this.myFunc = function (x) {
+            return x.toString(16);
+        }
+    });
+    app.controller('myCtrl', function($scope, hexafy) {
+        $scope.hex = hexafy.myFunc(255);
+        $scope.counts = [255, 251, 200];
+    });
+
+    app.filter('myFormat',['hexafy', function(hexafy) {
+        return function(x) {
+            return hexafy.myFunc(x);
+        };
+    }]);
+</script>
+
+</body>
+</html>
